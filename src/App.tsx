@@ -14,6 +14,9 @@ function App() {
     const [time, setTime] = useState<string>("");
     const [isEditing, setIsEditing] = useState<boolean>(false);
     const [currentTodoId, setCurrentTodoId] = useState<string | null>(null);
+    const [linkedIn, setLinkedIn] = useState<boolean>(false);
+    const [facebook, setFacebook] = useState<boolean>(false);
+    const [instagram, setInstagram] = useState<boolean>(false);
 
     useEffect(() => {
         client.models.Todo.observeQuery().subscribe({
@@ -35,11 +38,21 @@ function App() {
             return;
         }
 
-        client.models.Todo.create({ title, body, date: selectedDateTime.toISOString() });
+        client.models.Todo.create({
+            title,
+            body,
+            date: selectedDateTime.toISOString(),
+            LinkedIn: linkedIn,
+            Facebook: facebook,
+            Instagram: instagram
+        });
         setTitle("");
         setBody("");
         setDate("");
         setTime("");
+        setLinkedIn(false);
+        setFacebook(false);
+        setInstagram(false);
     }
 
     function startEdit(todo: Schema["Todo"]["type"]) {
@@ -47,6 +60,9 @@ function App() {
         setBody(todo.body ?? "");
         setDate(todo.date ? new Date(todo.date).toISOString().split('T')[0] : "");
         setTime(todo.date ? new Date(todo.date).toISOString().split('T')[1].slice(0, 5) : "");
+        setLinkedIn(todo.LinkedIn ?? false);
+        setFacebook(todo.Facebook ?? false);
+        setInstagram(todo.Instagram ?? false);
         setCurrentTodoId(todo.id);
         setIsEditing(true);
     }
@@ -70,11 +86,17 @@ function App() {
             title,
             body,
             date: selectedDateTime.toISOString(),
+            LinkedIn: linkedIn,
+            Facebook: facebook,
+            Instagram: instagram
         });
         setTitle("");
         setBody("");
         setDate("");
         setTime("");
+        setLinkedIn(false);
+        setFacebook(false);
+        setInstagram(false);
         setIsEditing(false);
         setCurrentTodoId(null);
     }
@@ -113,6 +135,26 @@ function App() {
                             value={time}
                             onChange={(e) => setTime(e.target.value)}
                         />
+                        <div>
+                            <input
+                                type="checkbox"
+                                checked={linkedIn}
+                                onChange={(e) => setLinkedIn(e.target.checked)}
+                            />
+                            <label>LinkedIn</label>
+                            <input
+                                type="checkbox"
+                                checked={facebook}
+                                onChange={(e) => setFacebook(e.target.checked)}
+                            />
+                            <label>Facebook</label>
+                            <input
+                                type="checkbox"
+                                checked={instagram}
+                                onChange={(e) => setInstagram(e.target.checked)}
+                            />
+                            <label>Instagram</label>
+                        </div>
                         {isEditing ? (
                             <button onClick={saveTodo}>Save</button>
                         ) : (
@@ -125,10 +167,15 @@ function App() {
                                 <h2>{todo.title}</h2>
                                 <p>{todo.body}</p>
                                 <p>{todo.date ? new Date(todo.date).toLocaleString() : "No date set"}</p>
+                                <p>
+                                    {todo.LinkedIn && "LinkedIn "}
+                                    {todo.Facebook && "Facebook "}
+                                    {todo.Instagram && "Instagram "}
+                                </p>
                                 <button onClick={() => startEdit(todo)}>Edit</button>
                                 <button onClick={() => deleteTodo(todo.id)}>Delete</button>
                             </li>
-                        ))} //hi
+                        ))}
                     </ul>
                     <div>
                         🥳 App successfully hosted. Try creating a post.

@@ -14,6 +14,11 @@ const schema = a.schema({
       title: a.string(),
       body: a.string(),
       date: a.datetime(),
+        LinkedIn: a.boolean(),
+        Facebook: a.boolean(),
+        Instagram: a.boolean(),
+
+
     })
     .authorization((allow) => [allow.publicApiKey()]),
 });

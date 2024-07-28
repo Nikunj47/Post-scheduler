@@ -13,6 +13,7 @@ const schema = a.schema({
       // createdON: a.dateTime(),
       title: a.string(),
       body: a.string(),
+      date: a.datetime(),
     })
     .authorization((allow) => [allow.publicApiKey()]),
 });

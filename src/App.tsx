@@ -8,8 +8,10 @@ const client = generateClient<Schema>();
 
 function App() {
     const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
-    const [title, setTitle] = useState("");
-    const [body, setBody] = useState("");
+    const [title, setTitle] = useState(""); // New line
+    const [body, setBody] = useState(""); // New line
+    const [isEditing, setIsEditing] = useState(false); // New line
+    const [currentTodoId, setCurrentTodoId] = useState<string | null>(null); // New line
 
     useEffect(() => {
         client.models.Todo.observeQuery().subscribe({
@@ -18,12 +20,35 @@ function App() {
     }, []);
 
     function createTodo() {
-        if (title && body) {
-            client.models.Todo.create({ title, body });
-            setTitle("");
-            setBody("");
+        if (title && body) { // Modified line
+            client.models.Todo.create({ title, body }); // Modified line
+            setTitle(""); // New line
+            setBody(""); // New line
         } else {
-            alert("Both title and body are required");
+            alert("Both title and body are required"); // New line
+        }
+    }
+
+    function startEdit(todo: Schema["Todo"]["type"]) { // New function
+        setTitle(todo.title); // New line
+        setBody(todo.body); // New line
+        setCurrentTodoId(todo.id); // New line
+        setIsEditing(true); // New line
+    }
+
+    function saveTodo() { // New function
+        if (currentTodoId && title && body) { // New line
+            client.models.Todo.update({ // New line
+                id: currentTodoId, // New line
+                title, // New line
+                body, // New line
+            });
+            setTitle(""); // New line
+            setBody(""); // New line
+            setIsEditing(false); // New line
+            setCurrentTodoId(null); // New line
+        } else {
+            alert("Both title and body are required"); // New line
         }
     }
 
@@ -40,22 +65,28 @@ function App() {
                         <input
                             type="text"
                             placeholder="Todo title"
-                            value={title}
-                            onChange={(e) => setTitle(e.target.value)}
+                            value={title} // New line
+                            onChange={(e) => setTitle(e.target.value)} // New line
                         />
                         <input
                             type="text"
                             placeholder="Todo body"
-                            value={body}
-                            onChange={(e) => setBody(e.target.value)}
+                            value={body} // New line
+                            onChange={(e) => setBody(e.target.value)} // New line
                         />
-                        <button onClick={createTodo}>+ new</button>
+                        {isEditing ? ( // New line
+                            <button onClick={saveTodo}>Save</button> // New line
+                        ) : (
+                            <button onClick={createTodo}>Submit</button>
+                        )}
                     </div>
                     <ul>
                         {todos.map((todo) => (
-                            <li onClick={() => deleteTodo(todo.id)} key={todo.id}>
-                                <h2>{todo.title}</h2>
-                                <p>{todo.body}</p>
+                            <li key={todo.id}>
+                                <h2>{todo.title}</h2> // Modified line
+                                <p>{todo.body}</p> // Modified line
+                                <button onClick={() => startEdit(todo)}>Edit</button> // New line
+                                <button onClick={() => deleteTodo(todo.id)}>Delete</button>
                             </li>
                         ))}
                     </ul>

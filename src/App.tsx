@@ -8,10 +8,10 @@ const client = generateClient<Schema>();
 
 function App() {
     const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
-    const [title, setTitle] = useState(""); // New line
-    const [body, setBody] = useState(""); // New line
-    const [isEditing, setIsEditing] = useState(false); // New line
-    const [currentTodoId, setCurrentTodoId] = useState<string | null>(null); // New line
+    const [title, setTitle] = useState<string>(""); // Added type annotation
+    const [body, setBody] = useState<string>(""); // Added type annotation
+    const [isEditing, setIsEditing] = useState<boolean>(false); // Added type annotation
+    const [currentTodoId, setCurrentTodoId] = useState<string | null>(null); // Added type annotation
 
     useEffect(() => {
         client.models.Todo.observeQuery().subscribe({
@@ -30,25 +30,25 @@ function App() {
     }
 
     function startEdit(todo: Schema["Todo"]["type"]) { // New function
-        setTitle(todo.title); // New line
-        setBody(todo.body); // New line
-        setCurrentTodoId(todo.id); // New line
-        setIsEditing(true); // New line
+        setTitle(todo.title ?? ""); // Fixed type issue
+        setBody(todo.body ?? ""); // Fixed type issue
+        setCurrentTodoId(todo.id);
+        setIsEditing(true);
     }
 
-    function saveTodo() { // New function
-        if (currentTodoId && title && body) { // New line
-            client.models.Todo.update({ // New line
-                id: currentTodoId, // New line
-                title, // New line
-                body, // New line
+    function saveTodo() {
+        if (currentTodoId && title && body) {
+            client.models.Todo.update({
+                id: currentTodoId,
+                title,
+                body,
             });
-            setTitle(""); // New line
-            setBody(""); // New line
-            setIsEditing(false); // New line
-            setCurrentTodoId(null); // New line
+            setTitle("");
+            setBody("");
+            setIsEditing(false);
+            setCurrentTodoId(null);
         } else {
-            alert("Both title and body are required"); // New line
+            alert("Both title and body are required");
         }
     }
 
@@ -65,17 +65,17 @@ function App() {
                         <input
                             type="text"
                             placeholder="Todo title"
-                            value={title} // New line
-                            onChange={(e) => setTitle(e.target.value)} // New line
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
                         />
                         <input
                             type="text"
                             placeholder="Todo body"
-                            value={body} // New line
-                            onChange={(e) => setBody(e.target.value)} // New line
+                            value={body}
+                            onChange={(e) => setBody(e.target.value)}
                         />
-                        {isEditing ? ( // New line
-                            <button onClick={saveTodo}>Save</button> // New line
+                        {isEditing ? (
+                            <button onClick={saveTodo}>Save</button>
                         ) : (
                             <button onClick={createTodo}>Submit</button>
                         )}
@@ -83,9 +83,9 @@ function App() {
                     <ul>
                         {todos.map((todo) => (
                             <li key={todo.id}>
-                                <h2>{todo.title}</h2> // Modified line
-                                <p>{todo.body}</p> // Modified line
-                                <button onClick={() => startEdit(todo)}>Edit</button> // New line
+                                <h2>{todo.title}</h2>
+                                <p>{todo.body}</p>
+                                <button onClick={() => startEdit(todo)}>Edit</button>
                                 <button onClick={() => deleteTodo(todo.id)}>Delete</button>
                             </li>
                         ))}

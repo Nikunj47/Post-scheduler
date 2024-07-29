@@ -257,7 +257,7 @@ function App() {
                                             </Typography>
                                             <Typography className="wrapped-text" variant="body2" color="text.secondary">
                                                 {showFullBody[todo.id] ? todo.body : truncateBody(todo.body || "", 200)}
-                                                {todo.body && todo.body.length > 200 && (
+                                                {todo.body && todo.body.length > 75 && (
                                                     <IconButton onClick={() => setShowFullBody(prev => ({ ...prev, [todo.id]: !prev[todo.id] }))}>
                                                         {showFullBody[todo.id] ? <ExpandLessIcon /> : <ExpandMoreIcon />}
                                                     </IconButton>

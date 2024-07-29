@@ -34,17 +34,17 @@ const darkTheme = createTheme({
     palette: {
         mode: 'dark',
         background: {
-            default: '#2c3e50',
-            paper: '#34495e',
+            default: '#696969',
+            paper: '#121212',
         },
         primary: {
-            main: '#1abc9c',
+            main: '#3abfaf',
         },
         secondary: {
             main: '#e74c3c',
         },
         text: {
-            primary: '#ecf0f1',
+            primary: '#444444',
         },
     },
 });

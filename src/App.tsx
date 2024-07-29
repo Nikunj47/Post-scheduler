@@ -26,12 +26,12 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
-import Sidebar from './components/Sidebar.tsx';
+import Sidebar from './Sidebar';
 
 // Import the logos
-import linkedinLogo from './assets/linkedin.jpg';
-import facebookLogo from './assets/facebook.jpg';
-import instagramLogo from './assets/instagram.jpg';
+import linkedinLogo from './assets/linkedin.png';
+import facebookLogo from './assets/facebook.png';
+import instagramLogo from './assets/instagram.png';
 
 const client = generateClient<Schema>();
 
@@ -250,9 +250,9 @@ function App() {
                             </Box>
                             <Box className="cards-container">
                                 {todos.map((todo) => (
-                                    <Card key={todo.id} className="card">
+                                    <Card key={todo.id} className="card" sx={{ backgroundColor: "#ffffff", color: "#2e2e2e" }}>
                                         <CardContent>
-                                            <Typography variant="h5" component="div">
+                                            <Typography variant="h5" component="div" sx={{ color: "#2e2e2e" }}>
                                                 {todo.title}
                                             </Typography>
                                             <Typography className="wrapped-text" variant="body2" color="text.secondary">

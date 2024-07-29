@@ -21,6 +21,7 @@ import {
     AppBar,
     Toolbar
 } from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -165,17 +166,25 @@ function App() {
             <CssBaseline />
             <Authenticator>
                 {({ signOut }) => (
-                    <Box sx={{ display: 'flex' }}>
+                    <Box sx={{ display: 'flex', height: '100vh' }}>
                         <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
                             <Toolbar>
-                                <Sidebar isOpen={isDrawerOpen} toggleDrawer={toggleDrawer} />
+                                <IconButton
+                                    color="inherit"
+                                    aria-label="open drawer"
+                                    edge="start"
+                                    onClick={toggleDrawer}
+                                    sx={{ mr: 2, display: { xs: 'block', sm: 'none' } }}
+                                >
+                                    <MenuIcon />
+                                </IconButton>
                                 <Typography variant="h6" noWrap component="div">
                                     My App
                                 </Typography>
                             </Toolbar>
                         </AppBar>
                         <Sidebar isOpen={isDrawerOpen} toggleDrawer={toggleDrawer} />
-                        <Box component="main" sx={{ flexGrow: 1, p: 3, mt: 8 }}>
+                        <Box component="main" sx={{ flexGrow: 1, p: 3, mt: 8, overflowY: 'auto' }}>
                             <Typography variant="h4" component="h1" gutterBottom>
                                 Posts
                             </Typography>

@@ -8,7 +8,7 @@ html, body {
   height: 100%;
   width: 100%;
   font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
-  background: linear-gradient(180deg, #2c3e50, #34495e); /* Dark gradient background */
+  background: linear-gradient(180deg, #232323, #490e0e); /* Dark gradient background */
   color: #ecf0f1; /* Light text color */
   display: flex;
   justify-content: center;

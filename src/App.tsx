@@ -157,7 +157,7 @@ function App() {
             <CssBaseline />
             <Authenticator>
                 {({ signOut }) => (
-                    <Box sx={{ maxWidth: 600, mx: 'auto', mt: 4, p: 2, height: '100vh', overflow: 'auto' }}>
+                    <Box sx={{ maxWidth: 1280, mx: 'auto', mt: 4, p: 2, height: '100vh', overflow: 'auto' }}>
                         <Typography variant="h4" component="h1" gutterBottom>
                             Posts
                         </Typography>
@@ -214,9 +214,9 @@ function App() {
                                 </Button>
                             )}
                         </Box>
-                        <Box>
+                        <Box className="cards-container">
                             {todos.map((todo) => (
-                                <Card key={todo.id} sx={{ mb: 2 }}>
+                                <Card key={todo.id} className="card">
                                     <CardContent>
                                         <Typography variant="h5" component="div">
                                             {todo.title}

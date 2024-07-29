@@ -3,7 +3,23 @@ import type { Schema } from "../amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
 import { Authenticator } from '@aws-amplify/ui-react';
 import '@aws-amplify/ui-react/styles.css';
-import './App.css'; // Import the CSS file
+import './App.css';
+import {
+    Box,
+    Button,
+    Checkbox,
+    FormControlLabel,
+    TextField,
+    Typography,
+    Card,
+    CardContent,
+    CardActions,
+    IconButton
+} from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 
 const client = generateClient<Schema>();
 
@@ -117,88 +133,102 @@ function App() {
     return (
         <Authenticator>
             {({ signOut }) => (
-                <main>
-                    <h1>Posts</h1>
-                    <div>
-                        <input
-                            type="text"
-                            placeholder="Todo title"
+                <Box sx={{ maxWidth: 600, mx: 'auto', mt: 4, p: 2 }}>
+                    <Typography variant="h4" component="h1" gutterBottom>
+                        Posts
+                    </Typography>
+                    <Box component="form" sx={{ display: 'flex', flexDirection: 'column', gap: 2, mb: 4 }}>
+                        <TextField
+                            label="Todo title"
+                            variant="outlined"
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
                         />
-                        <input
-                            type="text"
-                            placeholder="Todo body"
+                        <TextField
+                            label="Todo body"
+                            variant="outlined"
                             value={body}
                             onChange={(e) => setBody(e.target.value)}
+                            multiline
+                            rows={4}
                         />
-                        <input
+                        <TextField
+                            label="Todo date"
                             type="date"
-                            placeholder="Todo date"
+                            InputLabelProps={{ shrink: true }}
                             value={date}
                             onChange={(e) => setDate(e.target.value)}
                         />
-                        <input
+                        <TextField
+                            label="Todo time"
                             type="time"
-                            placeholder="Todo time"
+                            InputLabelProps={{ shrink: true }}
                             value={time}
                             onChange={(e) => setTime(e.target.value)}
                         />
-                        <div>
-                            <input
-                                type="checkbox"
-                                checked={linkedIn}
-                                onChange={(e) => setLinkedIn(e.target.checked)}
+                        <Box>
+                            <FormControlLabel
+                                control={<Checkbox checked={linkedIn} onChange={(e) => setLinkedIn(e.target.checked)} />}
+                                label="LinkedIn"
                             />
-                            <label>LinkedIn</label>
-                            <input
-                                type="checkbox"
-                                checked={facebook}
-                                onChange={(e) => setFacebook(e.target.checked)}
+                            <FormControlLabel
+                                control={<Checkbox checked={facebook} onChange={(e) => setFacebook(e.target.checked)} />}
+                                label="Facebook"
                             />
-                            <label>Facebook</label>
-                            <input
-                                type="checkbox"
-                                checked={instagram}
-                                onChange={(e) => setInstagram(e.target.checked)}
+                            <FormControlLabel
+                                control={<Checkbox checked={instagram} onChange={(e) => setInstagram(e.target.checked)} />}
+                                label="Instagram"
                             />
-                            <label>Instagram</label>
-                        </div>
+                        </Box>
                         {isEditing ? (
-                            <button onClick={saveTodo}>Save</button>
+                            <Button variant="contained" color="primary" onClick={saveTodo}>
+                                Save
+                            </Button>
                         ) : (
-                            <button onClick={createTodo}>Submit</button>
+                            <Button variant="contained" color="primary" onClick={createTodo}>
+                                Submit
+                            </Button>
                         )}
-                    </div>
-                    <ul>
+                    </Box>
+                    <Box>
                         {todos.map((todo) => (
-                            <li key={todo.id}>
-                                <h2>{todo.title}</h2>
-                                <p className="wrapped-text">
-                                    {showFullBody[todo.id] ? todo.body : truncateBody(todo.body || "", 200)}
-                                    {todo.body && todo.body.length > 200 && (
-                                        <button onClick={() => setShowFullBody(prev => ({ ...prev, [todo.id]: !prev[todo.id] }))}>
-                                            {showFullBody[todo.id] ? "Show Less" : "Show More"}
-                                        </button>
-                                    )}
-                                </p>
-                                <p>{todo.date ? new Date(todo.date).toLocaleString() : "No date set"}</p>
-                                <p>
-                                    {todo.LinkedIn && "LinkedIn "}
-                                    {todo.Facebook && "Facebook "}
-                                    {todo.Instagram && "Instagram "}
-                                </p>
-                                <button onClick={() => startEdit(todo)}>Edit</button>
-                                <button onClick={() => deleteTodo(todo.id)}>Delete</button>
-                            </li>
+                            <Card key={todo.id} sx={{ mb: 2 }}>
+                                <CardContent>
+                                    <Typography variant="h5" component="div">
+                                        {todo.title}
+                                    </Typography>
+                                    <Typography className="wrapped-text" variant="body2" color="text.secondary">
+                                        {showFullBody[todo.id] ? todo.body : truncateBody(todo.body || "", 200)}
+                                        {todo.body && todo.body.length > 200 && (
+                                            <IconButton onClick={() => setShowFullBody(prev => ({ ...prev, [todo.id]: !prev[todo.id] }))}>
+                                                {showFullBody[todo.id] ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                                            </IconButton>
+                                        )}
+                                    </Typography>
+                                    <Typography variant="body2" color="text.secondary">
+                                        {todo.date ? new Date(todo.date).toLocaleString() : "No date set"}
+                                    </Typography>
+                                    <Typography variant="body2" color="text.secondary">
+                                        {todo.LinkedIn && "LinkedIn "}
+                                        {todo.Facebook && "Facebook "}
+                                        {todo.Instagram && "Instagram "}
+                                    </Typography>
+                                </CardContent>
+                                <CardActions>
+                                    <IconButton color="primary" onClick={() => startEdit(todo)}>
+                                        <EditIcon />
+                                    </IconButton>
+                                    <IconButton color="secondary" onClick={() => deleteTodo(todo.id)}>
+                                        <DeleteIcon />
+                                    </IconButton>
+                                </CardActions>
+                            </Card>
                         ))}
-                    </ul>
-                    <div>
-                        🥳 App successfully hosted. Try creating a post.
-                        <br />
-                    </div>
-                    <button onClick={signOut}>Sign out</button>
-                </main>
+                    </Box>
+                    <Button variant="outlined" color="secondary" onClick={signOut}>
+                        Sign out
+                    </Button>
+                </Box>
             )}
         </Authenticator>
     );

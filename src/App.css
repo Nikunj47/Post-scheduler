@@ -97,13 +97,13 @@ body {
 
 .social-logos {
   display: flex;
-  flex-direction: column; /* Arrange logos vertically */
-  align-items: flex-start; /* Align logos to the left */
+  flex-direction: row; /* Arrange logos vertically */
+  align-items: center; /* Align logos to the left */
   margin-top: 1rem;
 }
 
 .social-logo {
-  height: 24px;
-  width: 24px;
+  height: 28px;
+  width: 28px;
   margin-bottom: 0.5rem;
 }

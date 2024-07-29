@@ -17,6 +17,7 @@ function App() {
     const [linkedIn, setLinkedIn] = useState<boolean>(false);
     const [facebook, setFacebook] = useState<boolean>(false);
     const [instagram, setInstagram] = useState<boolean>(false);
+    const [showFullBody, setShowFullBody] = useState<{ [key: string]: boolean }>({});
 
     useEffect(() => {
         client.models.Todo.observeQuery().subscribe({
@@ -105,6 +106,13 @@ function App() {
         client.models.Todo.delete({ id });
     }
 
+    const truncateBody = (body: string, maxLength: number) => {
+        if (body.length > maxLength) {
+            return body.substring(0, maxLength) + "...";
+        }
+        return body;
+    };
+
     return (
         <Authenticator>
             {({ signOut }) => (
@@ -165,7 +173,14 @@ function App() {
                         {todos.map((todo) => (
                             <li key={todo.id}>
                                 <h2>{todo.title}</h2>
-                                <p>{todo.body}</p>
+                                <p>
+                                    {showFullBody[todo.id] ? todo.body : truncateBody(todo.body || "", 200)}
+                                    {todo.body && todo.body.length > 200 && (
+                                        <button onClick={() => setShowFullBody(prev => ({ ...prev, [todo.id]: !prev[todo.id] }))}>
+                                            {showFullBody[todo.id] ? "Show Less" : "Show More"}
+                                        </button>
+                                    )}
+                                </p>
                                 <p>{todo.date ? new Date(todo.date).toLocaleString() : "No date set"}</p>
                                 <p>
                                     {todo.LinkedIn && "LinkedIn "}

@@ -83,3 +83,14 @@ body {
   flex-wrap: wrap;
   justify-content: center;
 }
+
+.sidebar-button {
+  margin-right: 1rem;
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .sidebar-button {
+    display: block;
+  }
+}

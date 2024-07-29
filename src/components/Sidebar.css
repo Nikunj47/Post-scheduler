@@ -1,0 +1,19 @@
+/* Sidebar.css */
+
+.sidebar {
+    width: 240px;
+    flex-shrink: 0;
+}
+
+.sidebar .MuiDrawer-paper {
+    width: 240px;
+    box-sizing: 'border-box';
+}
+
+.sidebar .MuiListItemIcon-root {
+    min-width: 35px; /* Adjust icon size */
+}
+
+.sidebar .MuiTypography-root {
+    font-size: 0.875rem; /* Small font size */
+}

@@ -14,7 +14,7 @@ html, body {
 }
 
 body {
-  background: #f5f5f5; /* Light white shade background */
+  background: #343434; /* Light white shade background */
   color: #2e2e2e; /* Dark text color for better contrast */
   font-family: 'Roboto', sans-serif;
 }
@@ -64,7 +64,7 @@ button:focus-visible {
 
 .button {
   background: #1abc9c;
-  color: white;
+  color: #121212;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
@@ -78,7 +78,7 @@ button:focus-visible {
 
 /* Cards */
 .card {
-  background: #ffffff; /* White card background */
+  background: #696969; /* White card background */
   color: #2e2e2e; /* Dark text color */
   border-radius: 8px;
   padding: 1rem;

@@ -167,8 +167,8 @@ a {
 /* Social Logos */
 .social-logos {
   display: flex;
-  flex-direction: column; /* Arrange logos vertically */
-  align-items: flex-start; /* Align logos to the left */
+  flex-direction: row; /* Arrange logos vertically */
+  align-items: center; /* Align logos to the left */
   margin-top: 1rem;
 }
 

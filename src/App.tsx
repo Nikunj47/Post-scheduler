@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import type { Schema } from "../amplify/data/resource";
 import { generateClient } from "aws-amplify/data";
-import { Authenticator } from '@aws-amplify/ui-react'
-import '@aws-amplify/ui-react/styles.css'
+import { Authenticator } from '@aws-amplify/ui-react';
+import '@aws-amplify/ui-react/styles.css';
+import './App.css'; // Import the CSS file
 
 const client = generateClient<Schema>();
 
@@ -173,7 +174,7 @@ function App() {
                         {todos.map((todo) => (
                             <li key={todo.id}>
                                 <h2>{todo.title}</h2>
-                                <p>
+                                <p className="wrapped-text">
                                     {showFullBody[todo.id] ? todo.body : truncateBody(todo.body || "", 200)}
                                     {todo.body && todo.body.length > 200 && (
                                         <button onClick={() => setShowFullBody(prev => ({ ...prev, [todo.id]: !prev[todo.id] }))}>

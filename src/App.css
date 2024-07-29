@@ -40,3 +40,8 @@
 .read-the-docs {
   color: #888;
 }
+
+.wrapped-text {
+  word-wrap: break-word;
+  max-width: 50ch; /* Ensures text wraps after 50 characters */
+}

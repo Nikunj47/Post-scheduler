@@ -66,7 +66,7 @@ body {
 
 .button {
   background: #1abc9c;
-  color: #20124d;
+  color: white;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
@@ -93,4 +93,17 @@ body {
   .sidebar-button {
     display: block;
   }
+}
+
+.social-logos {
+  display: flex;
+  flex-direction: column; /* Arrange logos vertically */
+  align-items: flex-start; /* Align logos to the left */
+  margin-top: 1rem;
+}
+
+.social-logo {
+  height: 24px;
+  width: 24px;
+  margin-bottom: 0.5rem;
 }

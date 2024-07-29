@@ -28,23 +28,28 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import Sidebar from './components/Sidebar.tsx';
 
+// Import the logos
+import linkedinLogo from './assets/linkedin.jpg';
+import facebookLogo from './assets/facebook.jpg';
+import instagramLogo from './assets/instagram.jpg';
+
 const client = generateClient<Schema>();
 
 const darkTheme = createTheme({
     palette: {
         mode: 'dark',
         background: {
-            default: '#696969',
-            paper: '#121212',
+            default: '#f5f5f5', // Light white shade background
+            paper: '#ffffff', // White paper background
         },
         primary: {
-            main: '#3abfaf',
+            main: '#1abc9c',
         },
         secondary: {
             main: '#e74c3c',
         },
         text: {
-            primary: '#444444',
+            primary: '#2e2e2e', // Dark text color
         },
     },
 });
@@ -89,8 +94,9 @@ function App() {
             date: selectedDateTime.toISOString(),
             LinkedIn: linkedIn,
             Facebook: facebook,
-            Instagram: instagram
+            Instagram: instagram,
         });
+
         setTitle("");
         setBody("");
         setDate("");
@@ -133,8 +139,9 @@ function App() {
             date: selectedDateTime.toISOString(),
             LinkedIn: linkedIn,
             Facebook: facebook,
-            Instagram: instagram
+            Instagram: instagram,
         });
+
         setTitle("");
         setBody("");
         setDate("");
@@ -259,11 +266,11 @@ function App() {
                                             <Typography variant="body2" color="text.secondary">
                                                 {todo.date ? new Date(todo.date).toLocaleString() : "No date set"}
                                             </Typography>
-                                            <Typography variant="body2" color="text.secondary">
-                                                {todo.LinkedIn && "LinkedIn "}
-                                                {todo.Facebook && "Facebook "}
-                                                {todo.Instagram && "Instagram "}
-                                            </Typography>
+                                            <div className="social-logos">
+                                                {todo.LinkedIn && <img src={linkedinLogo} alt="LinkedIn" className="social-logo" />}
+                                                {todo.Facebook && <img src={facebookLogo} alt="Facebook" className="social-logo" />}
+                                                {todo.Instagram && <img src={instagramLogo} alt="Instagram" className="social-logo" />}
+                                            </div>
                                         </CardContent>
                                         <CardActions>
                                             <IconButton color="primary" onClick={() => startEdit(todo)}>

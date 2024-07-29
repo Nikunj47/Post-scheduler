@@ -250,21 +250,21 @@ function App() {
                             </Box>
                             <Box className="cards-container">
                                 {todos.map((todo) => (
-                                    <Card key={todo.id} className="card" sx={{ backgroundColor: "#ffffff", color: "#2e2e2e" }}>
+                                    <Card key={todo.id} className="card" sx={{ backgroundColor: "#696969", color: "#2e2e2e" }}>
                                         <CardContent>
                                             <Typography variant="h5" component="div" sx={{ color: "#2e2e2e" }}>
                                                 {todo.title}
                                             </Typography>
+                                            <Typography variant="body2" color="text.secondary">
+                                                {todo.date ? new Date(todo.date).toLocaleString() : "No date set"}
+                                            </Typography>
                                             <Typography className="wrapped-text" variant="body2" color="text.secondary">
-                                                {showFullBody[todo.id] ? todo.body : truncateBody(todo.body || "", 200)}
+                                                {showFullBody[todo.id] ? todo.body : truncateBody(todo.body || "", 75)}
                                                 {todo.body && todo.body.length > 75 && (
                                                     <IconButton onClick={() => setShowFullBody(prev => ({ ...prev, [todo.id]: !prev[todo.id] }))}>
                                                         {showFullBody[todo.id] ? <ExpandLessIcon /> : <ExpandMoreIcon />}
                                                     </IconButton>
                                                 )}
-                                            </Typography>
-                                            <Typography variant="body2" color="text.secondary">
-                                                {todo.date ? new Date(todo.date).toLocaleString() : "No date set"}
                                             </Typography>
                                             <div className="social-logos">
                                                 {todo.LinkedIn && <img src={linkedinLogo} alt="LinkedIn" className="social-logo" />}

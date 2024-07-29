@@ -29,9 +29,9 @@ import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import Sidebar from './components/Sidebar.tsx';
 
 // Import the logos
-import linkedinLogo from './assets/linkedin.jpg';
-import facebookLogo from './assets/facebook.jpg';
-import instagramLogo from './assets/instagram.jpg';
+import linkedinLogo from './assets/linkedin.png';
+import facebookLogo from './assets/facebook.png';
+import instagramLogo from './assets/instagram.png';
 
 const client = generateClient<Schema>();
 

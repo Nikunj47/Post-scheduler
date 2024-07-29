@@ -14,7 +14,7 @@ html, body {
 }
 
 body {
-  background: #343434; /* Light white shade background */
+  background: #f5f5f5; /* Light white shade background */
   color: #2e2e2e; /* Dark text color for better contrast */
   font-family: 'Roboto', sans-serif;
 }
@@ -64,7 +64,7 @@ button:focus-visible {
 
 .button {
   background: #1abc9c;
-  color: #121212;
+  color: white;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
@@ -78,12 +78,14 @@ button:focus-visible {
 
 /* Cards */
 .card {
-  background: #696969; /* White card background */
+  background: #ffffff; /* White card background */
   color: #2e2e2e; /* Dark text color */
   border-radius: 8px;
   padding: 1rem;
   margin: 0.5rem; /* Adjust margin for spacing */
-  flex: 1 1 calc(25% - 1rem); /* Responsive flex property */
+  flex: 1 1 auto; /* Allow cards to grow and shrink as needed */
+  max-width: calc(25% - 1rem); /* Max width of each card */
+  box-sizing: border-box;
 }
 
 /* Lists */

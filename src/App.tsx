@@ -157,7 +157,7 @@ function App() {
             <CssBaseline />
             <Authenticator>
                 {({ signOut }) => (
-                    <Box sx={{ maxWidth: 600, mx: 'auto', mt: 4, p: 2 }}>
+                    <Box sx={{ maxWidth: 600, mx: 'auto', mt: 4, p: 2, height: '100vh', overflow: 'auto' }}>
                         <Typography variant="h4" component="h1" gutterBottom>
                             Posts
                         </Typography>

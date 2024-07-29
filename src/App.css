@@ -1,3 +1,11 @@
+/* App.css */
+
+body {
+  background: linear-gradient(to bottom, #2c3e50, #4ca1af);
+  color: #ecf0f1;
+  font-family: 'Roboto', sans-serif;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -11,9 +19,11 @@
   will-change: filter;
   transition: filter 300ms;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
@@ -34,7 +44,11 @@
 }
 
 .card {
-  padding: 2em;
+  background: #34495e; /* Dark card background */
+  color: #ecf0f1;
+  margin-bottom: 1rem;
+  border-radius: 8px;
+  padding: 1rem;
 }
 
 .read-the-docs {
@@ -43,5 +57,20 @@
 
 .wrapped-text {
   word-wrap: break-word;
-  max-width: 50ch; /* Ensures text wraps after 50 characters */
+  max-width: 50ch;
+  color: #ecf0f1; /* Ensure text color is light for contrast */
+}
+
+.button {
+  background: #1abc9c;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.button:hover {
+  background: #16a085;
 }

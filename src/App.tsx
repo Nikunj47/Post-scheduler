@@ -18,7 +18,6 @@ import {
     CssBaseline,
     createTheme,
     ThemeProvider,
-    Grid,
     AppBar,
     Toolbar
 } from '@mui/material';

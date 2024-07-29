@@ -50,7 +50,7 @@ button {
   background-color: #1abc9c;
   cursor: pointer;
   transition: border-color 0.25s;
-  color: #444444; /* Light text color */
+  color: #ffffff; /* Ensure button text is white */
 }
 
 button:hover {
@@ -83,9 +83,18 @@ button:focus-visible {
   border-radius: 8px;
   padding: 1rem;
   margin: 0.5rem; /* Adjust margin for spacing */
-  flex: 1 1 auto; /* Allow cards to grow and shrink as needed */
-  max-width: calc(25% - 1rem); /* Max width of each card */
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Grid Container */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid columns */
+  gap: 1rem; /* Gap between cards */
+  justify-items: center;
 }
 
 /* Lists */
@@ -167,8 +176,8 @@ a {
 /* Social Logos */
 .social-logos {
   display: flex;
-  flex-direction: row; /* Arrange logos vertically */
-  align-items: center; /* Align logos to the left */
+  flex-direction: column; /* Arrange logos vertically */
+  align-items: flex-start; /* Align logos to the left */
   margin-top: 1rem;
 }
 
@@ -192,7 +201,8 @@ a {
 
 /* Cards Container */
 .cards-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid columns */
+  gap: 1rem; /* Gap between cards */
+  justify-items: center;
 }

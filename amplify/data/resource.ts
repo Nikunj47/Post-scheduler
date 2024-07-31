@@ -1,5 +1,5 @@
 import { type ClientSchema, a, defineData } from "@aws-amplify/backend";
-import { addUserToGroup } from "./add-user-to-group/resource"
+// import { addUserToGroup } from "./add-user-to-group/resource"
 
 /*== STEP 1 ===============================================================
 The section below creates a Todo database table with a "content" field. Try

@@ -1,4 +1,5 @@
 import { type ClientSchema, a, defineData } from "@aws-amplify/backend";
+import { addUserToGroup } from "./add-user-to-group/resource"
 
 /*== STEP 1 ===============================================================
 The section below creates a Todo database table with a "content" field. Try
@@ -17,10 +18,8 @@ const schema = a.schema({
         LinkedIn: a.boolean(),
         Facebook: a.boolean(),
         Instagram: a.boolean(),
-
-
     })
-    .authorization((allow) => [allow.publicApiKey()]),
+    .authorization((allow) => [allow.groups(["EDITORS"]).to(["read", "update"])]),
 });
 
 export type Schema = ClientSchema<typeof schema>;

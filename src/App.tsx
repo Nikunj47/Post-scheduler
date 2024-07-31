@@ -39,8 +39,8 @@ const darkTheme = createTheme({
     palette: {
         mode: 'dark',
         background: {
-            default: '#f5f5f5', // Light white shade background
-            paper: '#ffffff', // White paper background
+            default: '#f5f5f5',
+            paper: '#ffffff',
         },
         primary: {
             main: '#1abc9c',
@@ -49,7 +49,7 @@ const darkTheme = createTheme({
             main: '#e74c3c',
         },
         text: {
-            primary: '#2e2e2e', // Dark text color
+            primary: '#2e2e2e',
         },
     },
 });
